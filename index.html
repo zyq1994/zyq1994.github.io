@@ -56,6 +56,42 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-LeetCode14" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/24/LeetCode14/" class="article-date">
+  <time datetime="2017-09-24T14:41:20.555Z" itemprop="datePublished">2017-09-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="LeetCode-14-Longest-Common-Prefix"><a href="#LeetCode-14-Longest-Common-Prefix" class="headerlink" title="LeetCode 14 Longest Common Prefix"></a>LeetCode 14 Longest Common Prefix</h1><h3 id="题目要求：Write-a-function-to-find-the-longest-common-prefix-string-amongst-an-array-of-strings"><a href="#题目要求：Write-a-function-to-find-the-longest-common-prefix-string-amongst-an-array-of-strings" class="headerlink" title="题目要求：Write a function to find the longest common prefix string amongst an array of strings"></a>题目要求：Write a function to find the longest common prefix string amongst an array of strings</h3><h4 id="分析：-这个题是用来求一组字符串的最长公共前缀，-“asdffg”-”asdfrty”-”asdvbg”-”asdcv”-”asdffghh”-，这个数组中的最长公共前缀就是“asd”"><a href="#分析：-这个题是用来求一组字符串的最长公共前缀，-“asdffg”-”asdfrty”-”asdvbg”-”asdcv”-”asdffghh”-，这个数组中的最长公共前缀就是“asd”" class="headerlink" title="分析： 这个题是用来求一组字符串的最长公共前缀，[“asdffg”,”asdfrty”,”asdvbg”,”asdcv”,”asdffghh”]，这个数组中的最长公共前缀就是“asd”"></a>分析： 这个题是用来求一组字符串的最长公共前缀，[“asdffg”,”asdfrty”,”asdvbg”,”asdcv”,”asdffghh”]，这个数组中的最长公共前缀就是“asd”</h4><h5 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h5><ol>
+<li><p>首先确定所有字符串中最短的字符串，因为最长公共前缀一定是比最短的字符串短的</p>
+</li>
+<li><p>以第一个字符串为参考，与后面的字符串进行对比，比较其中的每一个字符是否相同</p>
+</li>
+<li><p>遇到不同的进行标记，记录下标，最后选择所有下标中最小的一个</p>
+</li>
+</ol>
+<h5 id="代码"><a href="#代码" class="headerlink" title="代码;"></a>代码;</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">class Solution(object):</div><div class="line">    def longestCommonPrefix(self, strs):</div><div class="line">        minlength =0</div><div class="line">        length =0</div><div class="line">        while(len(strs) ==0 ):</div><div class="line">            return &quot;&quot;</div><div class="line">        if(len(strs[0])!=0):</div><div class="line">            minlength = len(strs[0])</div><div class="line">            length = len(strs)</div><div class="line">       </div><div class="line">            for i in range(1,length):</div><div class="line">                if minlength &gt; len(strs[i]):</div><div class="line">                    minlength = len(strs[i])</div><div class="line">           </div><div class="line">            for i in range(1,length):</div><div class="line">                for j  in range(0,minlength):</div><div class="line">                    # print strs[i][j]</div><div class="line">                    if strs[0][j] !=strs[i][j]:</div><div class="line">                        last = j</div><div class="line"></div><div class="line">                        if last &lt; minlength:</div><div class="line">                            minlength = last</div><div class="line">        return strs[0][0:minlength]</div></pre></td></tr></table></figure>
+<h6 id="备注："><a href="#备注：" class="headerlink" title="备注："></a>备注：</h6><p>要注意一些特殊情况，比如数组为空的情况</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/09/24/LeetCode14/" data-id="cj7yuy75e0000y8nf6ag8qthm" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-LeetCode9" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/09/23/LeetCode9/" class="article-date">
@@ -82,7 +118,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/09/23/LeetCode9/" data-id="cj7x2nose0000mcnfw9iy1n3t" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/09/23/LeetCode9/" data-id="cj7yuy77k0004y8nfc137vp9i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -119,7 +155,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/09/21/how-to-make-blog/" data-id="cj7x2not90003mcnfq836a461" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/09/21/how-to-make-blog/" data-id="cj7yuy7690003y8nffd781yn4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -155,7 +191,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/09/21/blog/" data-id="cj7x2not90002mcnfkms74vkj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/09/21/blog/" data-id="cj7yuy75u0001y8nf7dx18pp9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -200,7 +236,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/09/21/hello-world/" data-id="cj7x2not90001mcnfdt00o72c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/09/21/hello-world/" data-id="cj7yuy7690002y8nfkljgtr33" class="article-share-link">Share</a>
       
       
     </footer>
