@@ -158,7 +158,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/12/Blog-study/">Blog_study</a>
+      <a class="article-title" href="/2017/10/12/Blog-study/">博客学习笔记</a>
     </h1>
   
 
@@ -171,7 +171,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="经典博客学习笔记——《卷积：如何成为一个很厉害的神经网络》"><a href="#经典博客学习笔记——《卷积：如何成为一个很厉害的神经网络》" class="headerlink" title="经典博客学习笔记——《卷积：如何成为一个很厉害的神经网络》"></a>经典博客学习笔记——《卷积：如何成为一个很厉害的神经网络》</h1><p>原文链接<a href="http://note.youdao.com/" target="_blank" rel="external">：</a><a href="https://jizhi.im/blog/post/intuitive_explanation_cnn" target="_blank" rel="external">https://jizhi.im/blog/post/intuitive_explanation_cnn</a></p>
+<p>这篇文章很好的介绍了卷积神经网络的基础知识，适合初学者好好地钻研！</p>
+<h2 id="卷积"><a href="#卷积" class="headerlink" title="卷积"></a>卷积</h2><p>卷积的根本目的是从输入图像中提取特征，（特征提取是进行图像处理中非常重要的一步）<br><img src="E:\YOUdao\image\juanji.jpg" alt="image"></p>
+<p>这个3*3矩阵也叫“滤波器”，对于同一张照片，不同的滤波器将会产生不同的特征映射。所以只需要调整滤波器的数值就可以执行诸如边缘检测、锐化、模糊等效果-这说明不同的滤波器会从图片中得到不同的特征，比如边缘、曲线等。<br>下面这张图很好的解释了这个道理。<img src="E:\YOUdao\image\lvboqi.jpg" alt="image"></p>
+<p><strong>在实践中，卷积神经网络在训练过程中学习滤波器的参数，当然在训练前需要人为的指定一些参数：滤波器的个数，滤波器尺寸，网络架构等等</strong></p>
+<h2 id="非线性"><a href="#非线性" class="headerlink" title="非线性"></a>非线性</h2><p>ReLU 全称是纠正线性单元，是一种非线性操作。<br><img src="E:\YOUdao\image\relu.jpg" alt="image"></p>
+<p>ReLU是以像素为单位生效的，目的是向卷积网络中引入非线性，因为真实世界里面大多数需要学习的问题都是非线性的</p>
+<h2 id="池化"><a href="#池化" class="headerlink" title="池化"></a>池化</h2><p>空间池化（也叫做下采样）降低了每个特征映射的维度，但是保留了最重要的信息。空间池化可以有很多种形式：最大（Max）、平均（average）、求和（Sum）等等。</p>
+<p><img src="E:\YOUdao\image\chihua.jpg" alt="image"></p>
+<p><img src="E:\YOUdao\image\xiaoguo.jpg" alt="image"></p>
+<p>池化的功能是逐步减少输入表征的空间尺寸。特别的，池化</p>
+<ul>
+<li>使输入特征维度更小而易操作</li>
+<li>减少网络中的参数与计算数量，从而抑制过拟合</li>
+<li>增强网络对输入图像中的小变形、扭曲、平移的鲁棒性（输入里的微小扭曲不会改变池化输出，因为我们在局部邻域已经取了最大值/平均值）</li>
+<li>帮助我们获得不因尺寸而改变的等效图片表征。（这个非常有用，因为这样我们就可以探测到图片里面的物体，不论那个物体在哪）。</li>
+</ul>
+<h2 id="全连接层"><a href="#全连接层" class="headerlink" title="全连接层"></a>全连接层</h2><p>全连接层就是使用softmax激活函数作为输出层的多层感知机，全连接表示上一层的每一个神经元，都和下一层的每一个神经云是相互连接的。</p>
+<p>卷积层和池化层的每一个输出代表了输入图像的高级特征，全连接层的目的就是用这些特征进行分类，类别基于训练集。</p>
+<p>除了分类以外，加入全连接层也是学习特征之间非线性组合的有效办法。卷积层和池化层提取出来的特征很好，但是如果考虑这些特征之间的组合，就更好了。</p>
+<h2 id="联合起来——反向传播训练"><a href="#联合起来——反向传播训练" class="headerlink" title="联合起来——反向传播训练"></a>联合起来——反向传播训练</h2><p>卷积+池化是特征提取器，全连接层是分类器</p>
+<p>卷积网络的训练过程可以概括为以下：</p>
+<ul>
+<li>step 1：用随机数初始化所有的滤波器和参数/权重</li>
+<li>step 2 ：网络将训练图片作为输入，执行前向步骤（卷积、ReLU，池化以及全连接的前向传播）并计算每个类别的对应输出概率。</li>
+<li>step 3: 计算输出层的总误差</li>
+<li>step 4 ：反向传播算法计算误差相对于所有权重的梯度，并用梯度下降法更新所有的滤波器/权重和参数的值，以使输出误差最小化。</li>
+</ul>
+<p>以上步骤训练了卷积网络——本质上就是优化所有的权重和参数，使其能够正确的分类训练集里的图片。</p>
+<p>当一个新的图片输入到卷积网络，网络会执行前向传播步骤并输出每个类别的概率。如果我们的训练集足够大，网络就有望正确分类新图片，获得良好的泛化能力</p>
+<h2 id="可视化卷积神经网络"><a href="#可视化卷积神经网络" class="headerlink" title="可视化卷积神经网络"></a>可视化卷积神经网络</h2><p>下面这张图显示了卷积的实际效果</p>
+<p><img src="E:\YOUdao\image\keshihua.jpg" alt="image"></p>
+<p><img src="E:\YOUdao\image\keshihuaer.jpg" alt="image"></p>
+<p>以上就是对卷积神经网络中的一些基础知识点的介绍，能很好的帮助我们理解卷积神经网络！</p>
+
       
 
       
@@ -179,6 +213,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">博客学习笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -398,21 +443,6 @@
     <article id="post-LeetCode14" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/26/LeetCode14/">AdaBoost</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/26/LeetCode14/" class="archive-article-date">
-  	<time datetime="2017-09-26T11:46:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-26</time>
-</a>
-        
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="LeetCode-14-Longest-Common-Prefix"><a href="#LeetCode-14-Longest-Common-Prefix" class="headerlink" title="LeetCode 14 Longest Common Prefix"></a>LeetCode 14 Longest Common Prefix</h1><h3 id="题目要求：Write-a-function-to-find-the-longest-common-prefix-string-amongst-an-array-of-strings"><a href="#题目要求：Write-a-function-to-find-the-longest-common-prefix-string-amongst-an-array-of-strings" class="headerlink" title="题目要求：Write a function to find the longest common prefix string amongst an array of strings"></a>题目要求：Write a function to find the longest common prefix string amongst an array of strings</h3><h4 id="分析：-这个题是用来求一组字符串的最长公共前缀，-“asdffg”-”asdfrty”-”asdvbg”-”asdcv”-”asdffghh”-，这个数组中的最长公共前缀就是“asd”"><a href="#分析：-这个题是用来求一组字符串的最长公共前缀，-“asdffg”-”asdfrty”-”asdvbg”-”asdcv”-”asdffghh”-，这个数组中的最长公共前缀就是“asd”" class="headerlink" title="分析： 这个题是用来求一组字符串的最长公共前缀，[“asdffg”,”asdfrty”,”asdvbg”,”asdcv”,”asdffghh”]，这个数组中的最长公共前缀就是“asd”"></a>分析： 这个题是用来求一组字符串的最长公共前缀，[“asdffg”,”asdfrty”,”asdvbg”,”asdcv”,”asdffghh”]，这个数组中的最长公共前缀就是“asd”</h4><h5 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h5><ol>
@@ -480,21 +510,6 @@
   
     <article id="post-LeetCode9" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/26/LeetCode9/">AdaBoost</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/26/LeetCode9/" class="archive-article-date">
-  	<time datetime="2017-09-26T11:46:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-26</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
@@ -792,6 +807,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">LeetCode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">博客学习笔记</a>
               </li>
             
             <div class="clearfix"></div>
