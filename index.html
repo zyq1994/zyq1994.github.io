@@ -151,6 +151,57 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-offer11" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="数值的整数次方"><a href="#数值的整数次方" class="headerlink" title="数值的整数次方"></a>数值的整数次方</h1><h2 id="题目：实现函数，求base-的exponent-次方，不得使用库函数，同时不需要考虑大数问题"><a href="#题目：实现函数，求base-的exponent-次方，不得使用库函数，同时不需要考虑大数问题" class="headerlink" title="题目：实现函数，求base 的exponent 次方，不得使用库函数，同时不需要考虑大数问题"></a>题目：实现函数，求base 的exponent 次方，不得使用库函数，同时不需要考虑大数问题</h2><h3 id="分析：首先看到这道题的时候感觉很简单，直接result-base-但是这种解法就忽略了exponent-小于1的情况，所以需要考虑指数部分为小于1的情况"><a href="#分析：首先看到这道题的时候感觉很简单，直接result-base-但是这种解法就忽略了exponent-小于1的情况，所以需要考虑指数部分为小于1的情况" class="headerlink" title="分析：首先看到这道题的时候感觉很简单，直接result *= base ,但是这种解法就忽略了exponent 小于1的情况，所以需要考虑指数部分为小于1的情况"></a>分析：首先看到这道题的时候感觉很简单，直接result *= base ,但是这种解法就忽略了exponent 小于1的情况，所以需要考虑指数部分为小于1的情况</h3><h3 id="完善的解法："><a href="#完善的解法：" class="headerlink" title="完善的解法："></a>完善的解法：</h3><p>小于1 的情况可以分为等于0 和负数</p>
+<p>1 当指数为0 时，任何非零的实数的0次方都是1</p>
+<p>2 根据我们熟悉的数学知识，当指数部分为负数时，可以先对指数求绝对值，然后算出结果，在对结果取倒数<br>2.1 当底数（base）是0 且指数（exponent）是负数的时候，如果不做特殊的处理，就会出现对0求倒数，这样程序就会出错，所以要考虑到这种特殊情况的存在（0的0次方没有意义，可以输出为0）</p>
+<h3 id="完整的代码："><a href="#完整的代码：" class="headerlink" title="完整的代码："></a>完整的代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">class Solution：</div><div class="line"></div><div class="line">golabel g_invalidinput = False</div><div class="line">def power(base,exponent):</div><div class="line">    if equal(base,0.0) and exponent &lt;0:</div><div class="line">        g_invalidinput = True</div><div class="line">        return 0</div><div class="line">    if exponent &lt; 0:</div><div class="line">        absexponent = exponent * (-1.0)</div><div class="line">    result = PowerWithUnsign(base,absexponent)</div><div class="line">    if exponent &lt; 0 :</div><div class="line">        result = result / 1.0</div><div class="line">    return result</div><div class="line">def PowerWithUnsign(base,exponent):</div><div class="line">    result = 1.0</div><div class="line">    for i in range(1,exponent+1):</div><div class="line">        result *= base</div><div class="line">    return result</div><div class="line">def queal(num1,num2):</div><div class="line">    if num1 - num2 &gt; -0.00001 and num1 - num2 &lt; 0.00001:</div><div class="line">        return True</div><div class="line">    return False</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/02/offer11/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-LeetCode26" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -882,7 +933,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 我的小窝
+    		&copy; 2018 我的小窝
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -969,11 +1020,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">博客学习笔记</a>
+                <a href="javascript:void(0)" class="js-tag color4">LeetCode</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LeetCode</a>
+                <a href="javascript:void(0)" class="js-tag color2">博客学习笔记</a>
               </li>
             
             <div class="clearfix"></div>
